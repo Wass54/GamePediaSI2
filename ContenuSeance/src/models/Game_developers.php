@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace game\models;
 
-class Game extends \Illuminate\Database\Eloquent\Model{
-    protected $table = 'game';
+use Illuminate\Database\Eloquent\Model;
+
+class Game_developers extends Model{
+    protected $table = 'game_developers';
     protected $primaryKey = 'id';
     public $timestamps = false;
     

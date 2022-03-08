@@ -7,7 +7,9 @@
 
 	"autoload":{
 		"psr-4": {
-			"gamepedia\\" : "src"
+			"game\\" : "src",
+			"game\\models\\" : "src/models",
+			"game\\requetes\\" : "src/requetes"
 		}
 	}
 }
