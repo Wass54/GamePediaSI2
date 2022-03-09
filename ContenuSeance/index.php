@@ -16,5 +16,5 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $rm = new RequestManager();
-$rm->initialRatingWithGameNameContainsMario();
+$rm->gameDevelopedBySony();
 

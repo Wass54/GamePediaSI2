@@ -60,9 +60,12 @@ class RequestManager
 
     // Question 3
     function gameDevelopedBySony(){
-        $game = Game::companies()->where("name", "like", "%Sony%");
-        foreach ($game as $val) {
-            echo("name : " . $val->name);
+        $companys = Company::where("name", "like", "%Sony%")->get();
+        foreach ($companys as $company){
+            $games = $company->games;
+            foreach ($games as $val) {
+                echo($val->name . "<br>");
+            }
         }
     }
 
