@@ -120,6 +120,25 @@ class RequestManager
 
 
     //Question 8
+    function marioPublishedByCompaniesWithTheNameIncAndRangIs3PLUSIsCERO(){
+
+        $games = Game::where('name', 'like', 'Mario%')->whereHas('companies', function($query){
+                $query->where('name', 'like', '%Inc.%');
+            })->whereHas('ratings', function($q){
+
+                $q->where('name', 'like', '%3+%');
+
+            })->whereHas('rating_board', function($q) {
+
+                $q->where('name', '=', 'CERO');
+
+            })->get();
+        foreach($games as $game){
+            echo("Nom du jeu: " . $game->name."<br>");
+        }
+        
+    }
+
 
     // Question 9
     public function addNewGenre() {
