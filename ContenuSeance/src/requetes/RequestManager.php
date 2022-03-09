@@ -123,11 +123,11 @@ class RequestManager
 
     // Question 9
     public function addNewGenre() {
-        $g = new Genre();
-        $g->name = "tps";
+        $g = new Genre;
+        $g->name = "TPS";
 
-        $a1 = Game::find('12')->genre()->save($g);
-        $a2 = Game::find('56')->genre()->save($g);
-        $a3 = Game::find('345')->genre()->save($g);
+        Game::find('12')->genres()->save($g);
+        Game::find('56')->genres()->save($g);
+        Game::find('345')->genres()->save($g);
     }
 }

@@ -12,7 +12,7 @@ class Company extends Model{
     
     
     public function games(){
-        return $this->belongsToMany(Game::class, Game_developers::class, 'comp_id', 'game_id');
+        return $this->belongsToMany(Game::class, 'game_developers', 'comp_id', 'game_id');
     }
 }
 

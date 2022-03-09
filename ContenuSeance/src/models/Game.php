@@ -13,16 +13,21 @@ class Game extends Model{
 
     public function characters(): BelongsToMany
     {
-        return $this->belongsToMany(Character::class, Game2character::class, "game_id", "character_id");
+        return $this->belongsToMany(Character::class, 'Game2character', "game_id", "character_id");
     }
 
 
     public function ratings()
     {
-        return $this->belongsToMany(Game_rating::class, Game2rating::class, "game_id", "rating_id");
+        return $this->belongsToMany(Game_rating::class, 'game2rating', "game_id", "rating_id");
     }
 
     public function companies(){
         return $this->belongsToMany(Company::class, 'Game_developers', 'game_id', 'comp_id');
     }
+
+    public function genres(){
+        return  $this->belongsToMany(Genre::class, 'game2genre', 'game_id', 'genre_id');
+    }
+
 }
