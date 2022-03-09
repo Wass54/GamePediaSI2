@@ -11,8 +11,8 @@ class Character extends Model{
     protected $primaryKey = 'id';
     public $timestamps = false;
 
-    public function game(): BelongsToMany
+    public function games(): BelongsToMany
     {
-        return $this->belongsToMany(Game::class, Game2character::class);
+        return $this->belongsToMany(Game::class, Game2character::class, 'character_id', 'game_id');
     }
 }
