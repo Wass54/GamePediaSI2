@@ -102,8 +102,21 @@ class RequestManager
         }
     }
 
-    //Question 7
+    // Question 7
+    function marioPublishedByCompaniesWithTheNameIncAndRangIs3PLUS(){
 
+        $games = Game::where('name', 'like', 'Mario%')->whereHas('companies', function($query){
+                $query->where('name', 'like', '%Inc.%');
+            })->whereHas('ratings', function($q){
+
+                $q->where('name', 'like', '%3+%');
+
+            })->get();
+        foreach($games as $game){
+            echo("Nom du jeu: " . $game->name."<br>");
+        }
+        
+    }
 
 
     //Question 8

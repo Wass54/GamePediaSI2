@@ -16,10 +16,5 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $rm = new RequestManager();
-<<<<<<< HEAD
-//$rm->displayCharacter12342();
-$rm->gameBeginsByMarioAndHasMoreThan3Characters();
-=======
-$rm->gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3();
+$rm->marioPublishedByCompaniesWithTheNameIncAndRangIs3PLUS();
 
->>>>>>> 00f4a5e1a8e54c52b34f0eb53152e7c53d12d02e
