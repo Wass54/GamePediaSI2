@@ -39,16 +39,6 @@ class RequestManager
             echo($game->id . " " . $game->name . "<br>" . $game->deck . "<br>");
         }
     }
-
-    function displayCharacter12342(){
-        $jeu = Game::where("id", "=", 12342)->get();
-        foreach($jeu->characters as $personnage){
-
-            echo("Nom du personnage: " . $personnage->name . "<br>". "Deck du personnage: " . $personnage->deck);
-
-        }
-    }
-
     /* ---------------------------------------- TP2 -------------------------------------- */
     function displayCharacter12342(){
         $jeu = Game::where("id", '=', 12342)->first();;
