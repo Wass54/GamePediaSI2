@@ -44,7 +44,7 @@ class RequestManager
     /* ---------------------------------------- TP2 -------------------------------------- */
     // Question 1
     function displayCharacter12342(){
-        $jeu = Game::where("id", '=', 12342)->first();;
+        $jeu = Game::where("id", '=', 12342)->first();
         foreach($jeu->characters as $personnage){
             echo("Nom du personnage: " . $personnage->name . "<br>". "Deck du personnage: " . $personnage->deck . "<br><br>");
         }
@@ -83,6 +83,13 @@ class RequestManager
         }
     }
 
+    //Question 5
+    function gameBeginsByMarioAndHasMoreThan3Characters(){
+        $games = Game::where('name', 'like', 'Mario%')->has('characters', '>', 3)->get();
+            foreach ($games as $game){
+                echo("Nom du jeu: " . $game->name ."<br>");
+            }
+    }
 
     // Question 6
     public function gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3(){
@@ -95,9 +102,11 @@ class RequestManager
         }
     }
 
+    //Question 7
 
 
 
+    //Question 8
 
     // Question 9
     public function addNewGenre() {
