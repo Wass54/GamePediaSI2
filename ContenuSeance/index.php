@@ -16,4 +16,4 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $rm = new RequestManager();
-$rm->listGameWithPagination(1);
+$rm->displayCharacter12342();
