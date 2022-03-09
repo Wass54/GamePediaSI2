@@ -96,4 +96,16 @@ class RequestManager
     }
 
 
+
+
+
+    // Question 9
+    public function addNewGenre() {
+        $g = new Genre();
+        $g->name = "tps";
+
+        $a1 = Game::find('12')->genre()->save($g);
+        $a2 = Game::find('56')->genre()->save($g);
+        $a3 = Game::find('345')->genre()->save($g);
+    }
 }
