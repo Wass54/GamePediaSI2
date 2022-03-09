@@ -16,7 +16,13 @@ class Game extends Model{
         return $this->belongsToMany(Character::class, Game2character::class, "game_id", "character_id");
     }
 
-    public function ratings(){
-        return $this->belongsToMany(Game_rating::class, Game2rating::class, "game_id","rating_id");
+
+    public function ratings()
+    {
+        return $this->belongsToMany(Game_rating::class, Game2rating::class, "game_id", "rating_id");
+    }
+
+    public function companies(){
+        return $this->belongsToMany('Company', 'Game_developers', 'game_id', 'comp_id');
     }
 }

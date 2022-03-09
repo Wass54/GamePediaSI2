@@ -17,3 +17,4 @@ $db->bootEloquent();
 
 $rm = new RequestManager();
 $rm->initialRatingWithGameNameContainsMario();
+

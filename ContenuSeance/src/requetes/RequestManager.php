@@ -36,11 +36,11 @@ class RequestManager
 
     function listGameWithPagination($page){
         foreach (Game::skip(($page*500)-500)->take(500)->get() as $game){
-            echo($game->id . " " . $game->name . "<br>" . $game->deck . "<br><br>");
+            echo($game->id . " " . $game->name . "<br>" . $game->deck . "<br>");
         }
     }
-
     /* ---------------------------------------- TP2 -------------------------------------- */
+    // Question 1
     function displayCharacter12342(){
         $jeu = Game::where("id", '=', 12342)->first();;
         foreach($jeu->characters as $personnage){
@@ -48,6 +48,7 @@ class RequestManager
         }
     }
 
+    // Question 2
     function characterWithMarioGameName(){
         $games = Game::where('name', 'like', 'Mario%')->get();
         foreach ($games as $game){
@@ -57,14 +58,25 @@ class RequestManager
         }
     }
 
-    function initialRatingWithGameNameContainsMario(){
-        $games = Game::where('name','like','%mario%')->get();
-        foreach ($games as $game){
+    // Question 3
+    function gameDevelopedBySony(){
+        $game = Game::companies()->where("name", "like", "%Sony%");
+        foreach ($game as $val) {
+            echo("name : " . $val->name);
+        }
+    }
+
+    // Question 4
+    function initialRatingWithGameNameContainsMario()
+    {
+        $games = Game::where('name', 'like', '%mario%')->get();
+        foreach ($games as $game) {
             $ratings = $game->ratings;
             foreach ($ratings as $rating) {
                 echo($game->name . "<br>Rating : " . $rating->name . "<br>" . "RatingBoard : " . $rating->rating_board->name . "<br><br>");
             }
         }
-
     }
+
+
 }
