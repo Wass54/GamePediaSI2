@@ -13,6 +13,6 @@ class Character extends Model{
 
     public function games(): BelongsToMany
     {
-        return $this->belongsToMany(Game::class, Game2character::class, 'character_id', 'game_id');
+        return $this->belongsToMany(Game::class, 'game2character', 'character_id', 'game_id');
     }
 }

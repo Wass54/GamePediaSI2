@@ -16,5 +16,5 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $rm = new RequestManager();
-$rm->gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3();
+$rm->addNewGenre();
 
