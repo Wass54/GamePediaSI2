@@ -34,7 +34,16 @@ class RequestManager
 
     function listGameWithPagination($page){
         foreach (Game::skip(($page*500)-500)->take(500)->get() as $game){
-            echo($game->id . " " . $game->name . "<br>" . $game->deck . "<br><br>");
+            echo($game->id . " " . $game->name . "<br>" . $game->deck . "<br>");
+        }
+    }
+
+    function displayCharacter12342(){
+        $jeu = Game::where("id", "=", 12342)->get();
+        foreach($jeu->characters as $personnage){
+
+            echo("Nom du personnage: " . $personnage->name . "<br>". "Deck du personnage: " . $personnage->deck);
+
         }
     }
 }
