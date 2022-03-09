@@ -4,6 +4,8 @@ namespace game\requetes;
 use game\models\Character;
 use game\models\Company;
 use game\models\Game;
+use game\models\Game_rating;
+use game\models\Genre;
 use game\models\Platform;
 
 class RequestManager
@@ -77,6 +79,18 @@ class RequestManager
             $ratings = $game->ratings;
             foreach ($ratings as $rating) {
                 echo($game->name . "<br>Rating : " . $rating->name . "<br>" . "RatingBoard : " . $rating->rating_board->name . "<br><br>");
+            }
+        }
+    }
+
+
+    // Question 6
+    public function gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3(){
+        $ratings = Game_rating::Where('name','like','%3+%')->get();
+        foreach ($ratings as $rating){
+            $games = $rating->games()->where('name','like','Mario%')->get();
+            foreach ($games as $game){
+                echo($game->name."<br>");
             }
         }
     }
