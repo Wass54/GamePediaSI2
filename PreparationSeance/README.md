@@ -138,6 +138,6 @@ class Photo extends \Illuminate\Database\Eloquent\Model
         $a = Categorie::find('42');
         $a->categories()->save($p);
 
-        $a = Categorie::find('73');
-        $a->categories()->save($p);
+        $b = Categorie::find('73');
+        $b->categories()->save($p);
 ```
