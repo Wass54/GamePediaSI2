@@ -4,6 +4,8 @@ namespace game\requetes;
 use game\models\Character;
 use game\models\Company;
 use game\models\Game;
+use game\models\Game_rating;
+use game\models\Genre;
 use game\models\Platform;
 
 class RequestManager
@@ -40,6 +42,7 @@ class RequestManager
         }
     }
     /* ---------------------------------------- TP2 -------------------------------------- */
+    // Question 1
     function displayCharacter12342(){
         $jeu = Game::where("id", '=', 12342)->first();
         foreach($jeu->characters as $personnage){
@@ -47,6 +50,7 @@ class RequestManager
         }
     }
 
+    // Question 2
     function characterWithMarioGameName(){
         $games = Game::where('name', 'like', 'Mario%')->get();
         foreach ($games as $game){
@@ -56,11 +60,55 @@ class RequestManager
         }
     }
 
+    // Question 3
+    function gameDevelopedBySony(){
+        $companys = Company::where("name", "like", "%Sony%")->get();
+        foreach ($companys as $company){
+            $games = $company->games;
+            foreach ($games as $val) {
+                echo($val->name . "<br>");
+            }
+        }
+    }
 
+    // Question 4
+    function initialRatingWithGameNameContainsMario()
+    {
+        $games = Game::where('name', 'like', '%mario%')->get();
+        foreach ($games as $game) {
+            $ratings = $game->ratings;
+            foreach ($ratings as $rating) {
+                echo($game->name . "<br>Rating : " . $rating->name . "<br>" . "RatingBoard : " . $rating->rating_board->name . "<br><br>");
+            }
+        }
+    }
+
+    //Question 5
     function gameBeginsByMarioAndHasMoreThan3Characters(){
         $games = Game::where('name', 'like', 'Mario%')->has('characters', '>', 3)->get();
             foreach ($games as $game){
                 echo("Nom du jeu: " . $game->name ."<br>");
             }
+    }
+
+    // Question 6
+    public function gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3(){
+        $ratings = Game_rating::Where('name','like','%3+%')->get();
+        foreach ($ratings as $rating){
+            $games = $rating->games()->where('name','like','Mario%')->get();
+            foreach ($games as $game){
+                echo($game->name."<br>");
+            }
+        }
+    }
+
+    // Question 9
+    public function addNewGenre() {
+        $g = new Genre();
+        $g->name = "tps";
+
+        $a1 = Game::find('12')->genre()->save($g);
+        $a2 = Game::find('56')->genre()->save($g);
+        $a3 = Game::find('345')->genre()->save($g);
     }
 }
