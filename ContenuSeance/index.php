@@ -19,3 +19,5 @@ $rm = new RequestManager();
 $rm->listGameWithPagination(1);
 
 $rm->gameDevelopedBySony();
+
+$rm->displayCharacter12342();
