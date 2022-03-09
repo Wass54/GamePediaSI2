@@ -37,4 +37,11 @@ class RequestManager
             echo($game->id . " " . $game->name . "<br>" . $game->deck . "<br><br>");
         }
     }
+
+    function gameDevelopedBySony(){
+        $game = Game:: companies()->where("name", "like", "%Sony%");
+        foreach ($game as $val) {
+            echo("name : " . $val->name);
+        }    
+    }
 }

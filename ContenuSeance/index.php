@@ -17,3 +17,5 @@ $db->bootEloquent();
 
 $rm = new RequestManager();
 $rm->listGameWithPagination(1);
+
+$rm->gameDevelopedBySony();

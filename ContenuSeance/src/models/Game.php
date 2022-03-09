@@ -15,4 +15,8 @@ class Game extends Model{
     {
         return $this->belongsToMany(Character::class, Game2character::class);
     }
+
+    public function companies(){
+        return $this->belongsToMany('Company', 'Game_developers', 'game_id', 'comp_id');
+    }
 }
