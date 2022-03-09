@@ -16,4 +16,5 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $rm = new RequestManager();
-$rm->displayCharacter12342();
+//$rm->displayCharacter12342();
+$rm->gameBeginsByMarioAndHasMoreThan3Characters();

@@ -41,18 +41,26 @@ class RequestManager
     }
     /* ---------------------------------------- TP2 -------------------------------------- */
     function displayCharacter12342(){
-        $jeu = Game::where("id", '=', 12342)->first();;
+        $jeu = Game::where("id", '=', 12342)->first();
         foreach($jeu->characters as $personnage){
             echo("Nom du personnage: " . $personnage->name . "<br>". "Deck du personnage: " . $personnage->deck . "<br><br>");
         }
     }
 
-    function personnageWithMarioGameName(){
+    function characterWithMarioGameName(){
         $games = Game::where('name', 'like', 'Mario%')->get();
         foreach ($games as $game){
             foreach ($game->characters as $personnage) {
                 echo($personnage->id . " " . $personnage->name . "<br>");
             }
         }
+    }
+
+
+    function gameBeginsByMarioAndHasMoreThan3Characters(){
+        $games = Game::where('name', 'like', 'Mario%')->has('characters', '>', 3)->get();
+            foreach ($games as $game){
+                echo("Nom du jeu: " . $game->name ."<br>");
+            }
     }
 }
