@@ -48,12 +48,23 @@ class RequestManager
         }
     }
 
-    function personnageWithMarioGameName(){
+    function characterWithMarioGameName(){
         $games = Game::where('name', 'like', 'Mario%')->get();
         foreach ($games as $game){
             foreach ($game->characters as $personnage) {
                 echo($personnage->id . " " . $personnage->name . "<br>");
             }
         }
+    }
+
+    function initialRatingWithGameNameContainsMario(){
+        $games = Game::where('name','like','%mario%')->get();
+        foreach ($games as $game){
+            $ratings = $game->ratings;
+            foreach ($ratings as $rating) {
+                echo($game->name . "<br>Rating : " . $rating->name . "<br>" . "RatingBoard : " . $rating->rating_board->name . "<br><br>");
+            }
+        }
+
     }
 }
