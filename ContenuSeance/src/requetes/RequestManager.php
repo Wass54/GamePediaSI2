@@ -197,10 +197,12 @@ class RequestManager
 
     public function charactersWhoAppearsForTheFirstTimeInAMarioGame() {
 
-        foreach(Character::all() as $character) {
-            $game = Game::where("id","=",$character->first_appeared_in_game_id)->where("name","like","Mario%")->get();
+        $characters = Character::whereHas("firstAppearsIn", function($q){
+            $q->where("name","like","Mario%")->get();
+        })->get();
 
-            echo("nom du perso: " . $character->name . " from " . $game->name );
+        foreach($characters as $character) {
+            echo ("nom : " . $character->name);
         }
     }
 
