@@ -109,7 +109,13 @@ class RequestManager
 
     // Question 6
     public function gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3(){
+        $avant = microtime(true);
         $ratings = Game_rating::Where('name','like','%3+%')->get();
+        foreach ($ratings as $rating){
+            $games = $rating->games()->where('name','like','Mario%')->get();
+        }
+        $apres = microtime(true);
+        var_dump($apres-$avant);
         foreach ($ratings as $rating){
             $games = $rating->games()->where('name','like','Mario%')->get();
             foreach ($games as $game){
