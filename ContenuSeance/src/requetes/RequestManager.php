@@ -194,11 +194,4 @@ class RequestManager
             echo($game->id . " " . $game->name ."<br>");
         }
     }
-
-    public function listCompaniesByCountry($valeur) {
-        $avant = microtime(true);
-        Company::where("location_country", "like", "%" .$valeur . "%")->get();
-        $apres = microtime(true);
-        var_dump($apres-$avant);
-    }
 }

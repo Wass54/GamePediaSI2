@@ -10,11 +10,12 @@ use Illuminate\Database\Capsule\Manager as DB;
 $container = new Slim\Container(['settings' => ['displayErrorDetails' => true]]);
 $app = new Slim\App($container);
 
+
 $db = new DB();
 $db->addConnection(parse_ini_file(__DIR__.'/src/conf/conf.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
-$db->enableQueryLog();
+DB::enableQueryLog();
 
 $rm = new RequestManager();
 $rm->listGamesWithMario();
@@ -31,14 +32,13 @@ echo '<br>';
 $compteur = 0;
 foreach( DB::getQueryLog() as $q){
     $compteur++;
-    echo "-------------- \n";
-    echo "query : " . $q['query'] ."\n";
-    echo " --- bindings : [ ";
+    echo "-------------- <br>";
+    echo "query : " . $q['query'] ."<br>";
+    echo "bindings : [";
     foreach ($q['bindings'] as $b ) {
         echo " ". $b."," ;
     }
-    echo " ] ---\n";
-    echo "-------------- \n \n";
+    echo " ] <br><br>";
 };
 echo 'Nombre de requêtes executéss' . $compteur;
 
@@ -53,4 +53,3 @@ $rm->listGameContaining("Sonic");
 $rm->listGameContaining("World");
 */
 
-//$rm->listCompaniesByCountry("Japon");
