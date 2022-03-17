@@ -19,4 +19,6 @@ $rm = new RequestManager();
 $rm->listGamesWithMario();
 echo '<br>';
 $rm->gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3()
+echo '<br>';
+$rm->characterWithMarioGameName();
 
