@@ -16,10 +16,7 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $rm = new RequestManager();
-<<<<<<< HEAD
-
-$rm->marioPublishedByCompaniesWithTheNameIncAndRangIs3PLUS();
-=======
 $rm->listGamesWithMario();
->>>>>>> 1a08f724c2ceb4f4d50cb21eb2fbf3fdfe7a35ec
+echo '<br>';
+$rm->gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3()
 
