@@ -11,6 +11,13 @@ use game\models\Platform;
 class RequestManager
 {
 
+    function listAllGames(){
+        $avant = microtime(true);
+        Game::all();
+        $apres = microtime(true);
+        var_dump($apres-$avant);
+    }
+
     /* ------------------------ TP1  ---------------------------- */
     function listGamesWithMario(){
         $avant = microtime(true);
