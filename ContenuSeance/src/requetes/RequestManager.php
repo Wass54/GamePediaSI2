@@ -13,7 +13,12 @@ class RequestManager
 
     /* ------------------------ TP1  ---------------------------- */
     function listGamesWithMario(){
-        foreach (Game::where("name", "like", "%Mario%")->get() as $game){
+        $avant = microtime(true);
+        $games = Game::where("name", "like", "%Mario%")->get();
+        $apres = microtime(true);
+        var_dump($apres-$avant);
+
+        foreach ($games as $game){
             echo($game->id . " " . $game->name ."<br>");
         }
     }
@@ -93,7 +98,13 @@ class RequestManager
 
     // Question 6
     public function gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3(){
+        $avant = microtime(true);
         $ratings = Game_rating::Where('name','like','%3+%')->get();
+        foreach ($ratings as $rating){
+            $games = $rating->games()->where('name','like','Mario%')->get();
+        }
+        $apres = microtime(true);
+        var_dump($apres-$avant);
         foreach ($ratings as $rating){
             $games = $rating->games()->where('name','like','Mario%')->get();
             foreach ($games as $game){
