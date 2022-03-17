@@ -42,3 +42,15 @@ foreach( DB::getQueryLog() as $q){
 };
 echo 'Nombre de requêtes executéss' . $compteur;
 
+
+/*
+$rm->listGameStartingWith("Mario");
+$rm->listGameStartingWith("Sonic");
+$rm->listGameStartingWith("World");
+
+$rm->listGameContaining("Mario");
+$rm->listGameContaining("Sonic");
+$rm->listGameContaining("World");
+*/
+
+//$rm->listCompaniesByCountry("Japon");
