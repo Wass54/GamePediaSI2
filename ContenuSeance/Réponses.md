@@ -33,8 +33,8 @@ Le nombre de requête avec le chargement lié sur "afficher le nom des personnag
 
 La technique SQL utilisée est l'inner join.
 
-Le nombre de requête sans le chargement liés sur "jeux développés par une compagnie dont le nom contient 'Sony'": 19
-Le nombre de requête avec le chargement liés sur "jeux développés par une compagnie dont le nom contient 'Sony'": 
+Le nombre de requête sans le chargement liés sur "jeux développés par une compagnie dont le nom contient 'Sony'": 108
+Le nombre de requête avec le chargement liés sur "jeux développés par une compagnie dont le nom contient 'Sony'": 7
 
 
 
