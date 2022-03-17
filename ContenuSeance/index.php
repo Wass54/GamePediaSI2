@@ -14,11 +14,31 @@ $db = new DB();
 $db->addConnection(parse_ini_file(__DIR__.'/src/conf/conf.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
+$db->enableQueryLog();
 
 $rm = new RequestManager();
 $rm->listGamesWithMario();
 echo '<br>';
-$rm->gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3();
+$rm->displayCharacter12342();
 echo '<br>';
+//méthode afficher les noms des persos apparus pour la 1ere fois dans 1 jeu dont le nom contient Mario
+//echo '<br>';
 $rm->characterWithMarioGameName();
+echo '<br>';
+$rm->gameDevelopedBySony();
+echo '<br>';
+
+$compteur = 0;
+foreach( DB::getQueryLog() as $q){
+    $compteur++;
+    echo "-------------- \n";
+    echo "query : " . $q['query'] ."\n";
+    echo " --- bindings : [ ";
+    foreach ($q['bindings'] as $b ) {
+        echo " ". $b."," ;
+    }
+    echo " ] ---\n";
+    echo "-------------- \n \n";
+};
+echo 'Nombre de requêtes executéss' . $compteur;
 
