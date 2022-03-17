@@ -1,0 +1,20 @@
+
+Partie 1:
+1/
+<?php 
+
+$avant = microtime(true);
+
+//séquence d'instructions PHP
+
+$$après = microtime(true);
+
+var_dump($après-$avant); // temps de l'exécution
+
+2/
+
+Partie 2:
+1/
+
+
+2/
