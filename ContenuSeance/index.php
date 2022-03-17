@@ -16,5 +16,5 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $rm = new RequestManager();
-$rm->marioPublishedByCompaniesWithTheNameIncAndRangIs3PLUS();
+$rm->listGamesWithMario();
 

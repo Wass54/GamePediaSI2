@@ -13,7 +13,12 @@ class RequestManager
 
     /* ------------------------ TP1  ---------------------------- */
     function listGamesWithMario(){
-        foreach (Game::where("name", "like", "%Mario%")->get() as $game){
+        $avant = microtime(true);
+        $games = Game::where("name", "like", "%Mario%")->get();
+        $apres = microtime(true);
+        var_dump($apres-$avant);
+
+        foreach ($games as $game){
             echo($game->id . " " . $game->name ."<br>");
         }
     }
