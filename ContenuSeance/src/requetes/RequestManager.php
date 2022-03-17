@@ -170,4 +170,16 @@ class RequestManager
         Game::find('56')->genres()->save($g);
         Game::find('345')->genres()->save($g);
     }
+
+    //----------------------------------------------TP3----------------------------------------------
+    public function listGameStartingWith($valeur) {
+        $avant = microtime(true);
+        $games = Game::where("name", "like", $valeur . "%")->get();
+        $apres = microtime(true);
+        var_dump($apres-$avant);
+
+        foreach ($games as $game){
+            echo($game->id . " " . $game->name ."<br>");
+        }
+    }
 }
