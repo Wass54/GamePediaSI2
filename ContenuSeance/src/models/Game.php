@@ -33,4 +33,7 @@ class Game extends Model{
         return $this->ratings()->belongsTo()(Rating_board::class, 'rating_board_id');
     }
 
+    public function hasFirstAppearanceOf(){
+        return $this->hasMany(Character::class,'first_appeared_in_game_id');
+    }
 }

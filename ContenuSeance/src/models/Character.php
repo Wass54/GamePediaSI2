@@ -15,4 +15,8 @@ class Character extends Model{
     {
         return $this->belongsToMany(Game::class, 'game2character', 'character_id', 'game_id');
     }
+
+    public function firstAppearsIn(){
+        return $this->belongsTo(Game::class,'first_appeared_in_game_id');
+    }
 }
