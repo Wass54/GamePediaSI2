@@ -65,7 +65,7 @@ class RequestManager
     // Question 2
     function characterWithMarioGameName(){
         $avant = microtime(true);
-        $games = Game::where('name', 'like', 'Mario%')/*->with('characters')*/->get();
+        $games = Game::where('name', 'like', 'Mario%')->with('characters')->get();
         $apres = microtime(true);
         var_dump($apres-$avant);
         foreach ($games as $game){
