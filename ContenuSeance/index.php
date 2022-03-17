@@ -16,9 +16,16 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $rm = new RequestManager();
-$rm->listGamesWithMario();
-echo '<br>';
-$rm->gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3();
-echo '<br>';
-$rm->characterWithMarioGameName();
 
+
+/*
+$rm->listGameStartingWith("Mario");
+$rm->listGameStartingWith("Sonic");
+$rm->listGameStartingWith("World");
+
+$rm->listGameContaining("Mario");
+$rm->listGameContaining("Sonic");
+$rm->listGameContaining("World");
+*/
+
+$rm->listCompaniesByCountry("Japon");
