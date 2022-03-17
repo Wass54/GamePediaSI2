@@ -18,7 +18,7 @@ $db->bootEloquent();
 $rm = new RequestManager();
 $rm->listGamesWithMario();
 echo '<br>';
-$rm->gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3()
+$rm->gamesWithNameStartingWithMarioAndInitialRatingContainingMoreOf3();
 echo '<br>';
 $rm->characterWithMarioGameName();
 
