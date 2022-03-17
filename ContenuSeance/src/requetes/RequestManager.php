@@ -11,6 +11,13 @@ use game\models\Platform;
 class RequestManager
 {
 
+    function listAllGames(){
+        $avant = microtime(true);
+        Game::all();
+        $apres = microtime(true);
+        var_dump($apres-$avant);
+    }
+
     /* ------------------------ TP1  ---------------------------- */
     function listGamesWithMario(){
         $avant = microtime(true);
@@ -57,7 +64,11 @@ class RequestManager
 
     // Question 2
     function characterWithMarioGameName(){
+        $avant = microtime(true);
         $games = Game::where('name', 'like', 'Mario%')->get();
+        $apres = microtime(true);
+        var_dump($apres-$avant);
+
         foreach ($games as $game){
             foreach ($game->characters as $personnage) {
                 echo($personnage->id . " " . $personnage->name . "<br>");
