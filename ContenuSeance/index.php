@@ -40,7 +40,7 @@ foreach( DB::getQueryLog() as $q){
     }
     echo " ] <br><br>";
 };
-echo 'Nombre de requêtes executéss' . $compteur;
+echo 'Nombre de requêtes executées : ' . $compteur;
 
 
 /*
