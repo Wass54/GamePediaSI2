@@ -25,3 +25,16 @@ On peut constater que lorsque l'on recherche le nom des jeux qui contiennent une
 requête redevient bien plus longue.
 Cela peut s'expliquer que l'index ne sert pas car on ne recherche pas la valeur que dans le début du mot.
 On doit donc parcourir toute la table.
+
+**Chargements liés**: 
+
+Le nombre de requête sans le chargement lié sur "afficher le nom des personnages des jeux dont le nom (de jeu) contient 'Mario'" : 108
+Le nombre de requête avec le chargement lié sur "afficher le nom des personnages des jeux dont le nom (de jeu) contient 'Mario'" : 19
+
+La technique SQL utilisée est l'inner join.
+
+Le nombre de requête sans le chargement liés sur "jeux développés par une compagnie dont le nom contient 'Sony'": 19
+Le nombre de requête avec le chargement liés sur "jeux développés par une compagnie dont le nom contient 'Sony'": 
+
+
+

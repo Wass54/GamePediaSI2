@@ -10,7 +10,6 @@ class Company extends Model{
     protected $primaryKey = 'id';
     public $timestamps = false;
     
-    
     public function games(){
         return $this->belongsToMany(Game::class, 'game_developers', 'comp_id', 'game_id');
     }
