@@ -17,9 +17,9 @@ Create table Comment(
     content VARCHAR(500),
     created_at DATETIME,
     updated_at DATETIME,
-    postedBy VARCHAR(100),
+    postedBy int,
     game INT,
     PRIMARY KEY (id),
     FOREIGN KEY (game) references Game(id),
-    FOREIGN KEY (postedBy) references User(email)
+    FOREIGN KEY (postedBy) references User(id)
 )
