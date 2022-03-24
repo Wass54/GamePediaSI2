@@ -9,6 +9,6 @@ for ($i = 0; $i < 3; $i++) {
 }
 
 3) 
-$date = DateTime =  new DateTime('2011-01-01T15:03:01.012345Z');
+$date = new DateTime('2011-01-01T15:03:01.012345Z');
 $date->format("Y-m-d(H:M)");
 
