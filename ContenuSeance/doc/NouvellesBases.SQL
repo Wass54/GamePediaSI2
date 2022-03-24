@@ -12,7 +12,7 @@ Create table User (
 
 
 Create table Comment(
-    id int,
+    id int auto_increment,
     title VARCHAR(50),
     content VARCHAR(500),
     created_at DATETIME,
