@@ -18,6 +18,20 @@ $db->bootEloquent();
 DB::enableQueryLog();
 
 $rm = new RequestManager();
+
+
+
+
+/**
+$rm->listGameStartingWith("Mario");
+$rm->listGameStartingWith("Sonic");
+$rm->listGameStartingWith("World");
+
+$rm->listGameContaining("Mario");
+$rm->listGameContaining("Sonic");
+$rm->listGameContaining("World");
+
+
 $rm->listGamesWithMario();
 echo '<br>';
 $rm->displayCharacter12342();
@@ -41,15 +55,4 @@ foreach( DB::getQueryLog() as $q){
     echo " ] <br><br>";
 };
 echo 'Nombre de requêtes executées : ' . $compteur;
-
-
-/*
-$rm->listGameStartingWith("Mario");
-$rm->listGameStartingWith("Sonic");
-$rm->listGameStartingWith("World");
-
-$rm->listGameContaining("Mario");
-$rm->listGameContaining("Sonic");
-$rm->listGameContaining("World");
-*/
-
+**/
