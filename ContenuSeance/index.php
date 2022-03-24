@@ -2,7 +2,6 @@
 require_once 'vendor\autoload.php';
 
 use game\requetes\RequestManager;
-use models\Game;
 use Illuminate\Database\Capsule\Manager as DB;
 
 

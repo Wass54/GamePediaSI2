@@ -1,11 +1,12 @@
 Create table User (
+    id int auto_increment,
     email VARCHAR(100),
     lastName VARCHAR(50),
     firstName VARCHAR(50),
     address VARCHAR(50),
     phoneNumber VARCHAR(10),
     dateOfBirth DATE,
-    PRIMARY KEY (email)
+    PRIMARY KEY (id)
 );
 
 
