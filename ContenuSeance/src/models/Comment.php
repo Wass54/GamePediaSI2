@@ -2,9 +2,10 @@
 
 namespace game\models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Comment
+class Comment extends Model
 {
     protected $table = 'comment';
     protected $primaryKey = 'id';
@@ -17,5 +18,4 @@ class Comment
     public function game(){
         return $this->belongsTo(Game::class);
     }
-
 }

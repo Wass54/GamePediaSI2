@@ -1,12 +1,15 @@
 <?php
 namespace game\requetes;
 
+use DateTime;
 use game\models\Character;
+use game\models\Comment;
 use game\models\Company;
 use game\models\Game;
 use game\models\Game_rating;
 use game\models\Genre;
 use game\models\Platform;
+use game\models\User;
 
 class RequestManager
 {
@@ -227,30 +230,25 @@ class RequestManager
         $utilisateur1->firstName = 'Maxence';
         $utilisateur1->address = 'rue des versailles';
         $utilisateur1->phoneNumber = '0652070025';
-        $utilisateur1->dateOfBirth = '11/04/2002';
+        $utilisateur1->dateOfBirth = date('1956-12-01 15:10:10');
+        $utilisateur1->save();
 
 
         $commentaire1Utilisateur1->id = 1;
         $commentaire1Utilisateur1->title = 'Evaluation du jeu';
         $commentaire1Utilisateur1->content = 'Bon jeu';
-        $commentaire1Utilisateur1->createdAt = $date;
-        $commentaire1Utilisateur1->updatedAt = $date;
         $commentaire1Utilisateur1->postedBy = 'juventus10@gmail.com';
         $commentaire1Utilisateur1->game = 12342;
 
         $commentaire2Utilisateur1->id = 2;
         $commentaire2Utilisateur1->title = 'Bug affichage';
         $commentaire2Utilisateur1->content = 'L affichage est mal fait';
-        $commentaire2Utilisateur1->createdAt = $date;
-        $commentaire2Utilisateur1->updatedAt = $date;
         $commentaire2Utilisateur1->postedBy = 'juventus10@gmail.com';
         $commentaire2Utilisateur1->game = 12342;
 
         $commentaire3Utilisateur1->id = 3;
         $commentaire3Utilisateur1->title = 'Probleme de fps';
         $commentaire3Utilisateur1->content = 'fps très bas ';
-        $commentaire3Utilisateur1->createdAt = $date;
-        $commentaire3Utilisateur1->updatedAt = $date;
         $commentaire3Utilisateur1->postedBy = 'juventus10@gmail.com';
         $commentaire3Utilisateur1->game = 12342;
 
@@ -260,33 +258,34 @@ class RequestManager
         $utilisateur2->firstName = 'Cristiano';
         $utilisateur2->address = 'rue du portugal';
         $utilisateur2->phoneNumber = '0640206543';
-        $utilisateur2->dateOfBirth = '15/05/1956';
+        $utilisateur2->dateOfBirth = date('1956-12-01 15:10:10');
+        $utilisateur2->save();
 
 
         $commentaire1Utilisateur2->id = 4;
         $commentaire1Utilisateur2->title = 'Contenu';
         $commentaire1Utilisateur2->content = 'Manque de contenu';
-        $commentaire1Utilisateur2->createdAt = $date;
-        $commentaire1Utilisateur2->updatedAt = $date;
         $commentaire1Utilisateur2->postedBy = 'pyramide10@gmail.com';
         $commentaire1Utilisateur2->game = 12342;
 
         $commentaire2Utilisateur2->id = 5;
         $commentaire2Utilisateur2->title = 'Communauté';
         $commentaire2Utilisateur2->content = 'Communauté toxique';
-        $commentaire2Utilisateur2->createdAt = $date;
-        $commentaire2Utilisateur2->updatedAt = $date;
         $commentaire2Utilisateur2->postedBy = 'pyramide10@gmail.com';
         $commentaire2Utilisateur2->game = 12342;
 
         $commentaire3Utilisateur2->id = 6;
         $commentaire3Utilisateur2->title = 'Driver';
         $commentaire3Utilisateur2->content = 'Problème de driver';
-        $commentaire3Utilisateur2->createdAt = $date;
-        $commentaire3Utilisateur2->updatedAt = $date;
         $commentaire3Utilisateur2->postedBy = 'pyramide10@gmail.com';
         $commentaire3Utilisateur2->game = 12342;
 
+        $commentaire1Utilisateur1->save();
+        $commentaire2Utilisateur1->save();
+        $commentaire3Utilisateur1->save();
+        $commentaire1Utilisateur2->save();
+        $commentaire2Utilisateur2->save();
+        $commentaire3Utilisateur2->save();
     }
 
 }

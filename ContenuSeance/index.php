@@ -56,3 +56,5 @@ foreach( DB::getQueryLog() as $q){
 };
 echo 'Nombre de requêtes executées : ' . $compteur;
 **/
+
+$rm->creationOf2UsersWith3CommentsGame12342();

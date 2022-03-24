@@ -2,11 +2,16 @@
 
 namespace game\models;
 
-class User
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
 {
     protected $table = 'user';
     protected $primaryKey = 'email';
     public $timestamps = false;
 
+    function commentaires(){
+        return $this->hasMany(Comment::class);
+    }
 
 }
