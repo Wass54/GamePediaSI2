@@ -206,4 +206,87 @@ class RequestManager
         }
     }
 
+    //----------------------------------------------TP4----------------------------------------------
+    public function creationOf2UsersWith3CommentsGame12342(){
+        $utilisateur1 = new User();
+        $commentaire1Utilisateur1 = new Comment();
+        $commentaire2Utilisateur1 = new Comment();
+        $commentaire3Utilisateur1 = new Comment();
+
+        $utilisateur2 = new User();
+        $commentaire1Utilisateur2 = new Comment();
+        $commentaire2Utilisateur2 = new Comment();
+        $commentaire3Utilisateur2 = new Comment();
+
+        $date = new DateTime('2022-01-01T15:03:01.012345Z');
+        $date->format("Y-m-d(H:M)");
+
+        //---------------------Utilisateur 1----------------------------------------
+        $utilisateur1->email = 'juventus10@gmail.com';
+        $utilisateur1->lastName = 'Malleret';
+        $utilisateur1->firstName = 'Maxence';
+        $utilisateur1->address = 'rue des versailles';
+        $utilisateur1->phoneNumber = '0652070025';
+        $utilisateur1->dateOfBirth = '11/04/2002';
+
+
+        $commentaire1Utilisateur1->id = 1;
+        $commentaire1Utilisateur1->title = 'Evaluation du jeu';
+        $commentaire1Utilisateur1->content = 'Bon jeu';
+        $commentaire1Utilisateur1->createdAt = $date;
+        $commentaire1Utilisateur1->updatedAt = $date;
+        $commentaire1Utilisateur1->postedBy = 'juventus10@gmail.com';
+        $commentaire1Utilisateur1->game = 12342;
+
+        $commentaire2Utilisateur1->id = 2;
+        $commentaire2Utilisateur1->title = 'Bug affichage';
+        $commentaire2Utilisateur1->content = 'L affichage est mal fait';
+        $commentaire2Utilisateur1->createdAt = $date;
+        $commentaire2Utilisateur1->updatedAt = $date;
+        $commentaire2Utilisateur1->postedBy = 'juventus10@gmail.com';
+        $commentaire2Utilisateur1->game = 12342;
+
+        $commentaire3Utilisateur1->id = 3;
+        $commentaire3Utilisateur1->title = 'Probleme de fps';
+        $commentaire3Utilisateur1->content = 'fps très bas ';
+        $commentaire3Utilisateur1->createdAt = $date;
+        $commentaire3Utilisateur1->updatedAt = $date;
+        $commentaire3Utilisateur1->postedBy = 'juventus10@gmail.com';
+        $commentaire3Utilisateur1->game = 12342;
+
+        //---------------------Utilisateur 2----------------------------------------
+        $utilisateur2->email = 'pyramide10@gmail.com';
+        $utilisateur2->lastName = 'Ronaldo';
+        $utilisateur2->firstName = 'Cristiano';
+        $utilisateur2->address = 'rue du portugal';
+        $utilisateur2->phoneNumber = '0640206543';
+        $utilisateur2->dateOfBirth = '15/05/1956';
+
+
+        $commentaire1Utilisateur2->id = 4;
+        $commentaire1Utilisateur2->title = 'Contenu';
+        $commentaire1Utilisateur2->content = 'Manque de contenu';
+        $commentaire1Utilisateur2->createdAt = $date;
+        $commentaire1Utilisateur2->updatedAt = $date;
+        $commentaire1Utilisateur2->postedBy = 'pyramide10@gmail.com';
+        $commentaire1Utilisateur2->game = 12342;
+
+        $commentaire2Utilisateur2->id = 5;
+        $commentaire2Utilisateur2->title = 'Communauté';
+        $commentaire2Utilisateur2->content = 'Communauté toxique';
+        $commentaire2Utilisateur2->createdAt = $date;
+        $commentaire2Utilisateur2->updatedAt = $date;
+        $commentaire2Utilisateur2->postedBy = 'pyramide10@gmail.com';
+        $commentaire2Utilisateur2->game = 12342;
+
+        $commentaire3Utilisateur2->id = 6;
+        $commentaire3Utilisateur2->title = 'Driver';
+        $commentaire3Utilisateur2->content = 'Problème de driver';
+        $commentaire3Utilisateur2->createdAt = $date;
+        $commentaire3Utilisateur2->updatedAt = $date;
+        $commentaire3Utilisateur2->postedBy = 'pyramide10@gmail.com';
+        $commentaire3Utilisateur2->game = 12342;
+
+    }
+
 }
