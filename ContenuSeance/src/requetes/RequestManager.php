@@ -375,86 +375,51 @@ class RequestManager
 
 
 
-    
+
 
     public function addComment() {
                 
-        $fakerFr = Faker\Factory::create('fr_FR');
-        $fakerIt = Faker\Factory::create('it_IT');
-        $fakerEs = Faker\Factory::create('es_ES');
-        $fakerEn = Faker\Factory::create();
+
+        $faker = Faker\Factory::create();
+
         for($i=0;$i<25000;$i++){
 
-            $u = new User();
+            $c = new Comment();
 
+            //id	title	content	created_at	updated_at	postedBy	game	
+            $title;
+            $content;
+            $created_at;
+            $updated_at;
+            $postedBy;
+            $game;
 
-            $firstName;
-            $lastName;
-            $address;
-            $email;
-            $phone;
-            $date;
+            $games = Game::count();
+            $users = User::count();
 
+            $game = rand(1,$games);
 
+            $title = $faker->title();
+            $content = $faker->text();
+            $created_at = $faker->date($faker->date());
+            $updated_at = $faker->date($faker->date());
+            $postedBy = $rand(1,$users);
+            
+            echo $title . "<br>";
+            echo $content . "<br>";
+            echo $created_at . "<br>";
+            echo $updated_at . "<br>";
+            echo $postedBy . "<br>";
+            echo $game . "<br>";
 
-            switch (rand(0,10)){
-                case 1:
-                    echo "français :" . "<br>";
-                    $firstName = $fakerFr->firstName();
-                    $lastName = $fakerFr->lastName();
-                    $address = $fakerFr->address();
-                    $email = $fakerFr->email();
-                    $phone = $fakerFr->phoneNumber();
-                    $date = $fakerFr->date();
+            $c->title = $title;
+            $c->content = $content;
+            $c->created_at = $created_at;
+            $c->updated_at = $updated_at;
+            $c->postedBy = $postedBy;
+            $c->game = $game;
 
-                    break;
-                case 2:
-                    echo "Italien :" . "<br>";
-                    $firstName = $fakerIt->firstName();
-                    $lastName = $fakerIt->lastName();
-                    $address = $fakerIt->address();
-                    $email = $fakerIt->email();
-                    $phone = $fakerIt->phoneNumber();
-                    $date = $fakerIt->date();
-
-                    break;
-                case 3:
-                    echo "Espagnol :" . "<br>";
-                    $firstName = $fakerEs->firstName();
-                    $lastName = $fakerEs->lastName();
-                    $address = $fakerEs->address();
-                    $email = $fakerEs->email();
-                    $phone = $fakerEs->phoneNumber();
-                    $date = $fakerEs->date();
-
-                    break;
-                default:
-                    echo "Englais :" . "<br>";
-                    $firstName = $fakerEn->firstName();
-                    $lastName = $fakerEn->lastName();
-                    $address = $fakerEn->address();
-                    $email = $fakerEn->email();
-                    $phone = $fakerEn->phoneNumber();
-                    $date = $fakerEn->date();
-                    break;
-            }
-
-            echo $firstName . "<br>";
-            echo $lastName . "<br>";
-            echo $address . "<br>";
-            echo $email . "<br>";
-            echo $phone . "<br>";
-            echo $date . "<br>";
-
-
-            $u->firstName = $firstName;
-            $u->lastName = $lastName;
-            $u->address = $address;
-            $u->email = $email;
-            $u->phoneNumber = $phone;
-            $u->dateOfBirth = date($date);
-
-            $u->save();
+            $c->save();
 
             echo "______________________ " . $i . "______________________ <br>";
         }
