@@ -1,14 +1,14 @@
-1)
-Il s'installe avec composer :
-composer require fakerphp/faker
+1) json_encode() retournera un tableau uniquement si le tableau rentré en paramètre
+contient des index numériques et séquentiels (0, 1, 2, 3, 4, ...) et pas (0, 2, 3, 8, ...)
+Pour tous les autres cas, la fonction retournera un objet.
 
-2)
-$faker = Faker\Factory::create('en_US');
-for ($i = 0; $i < 3; $i++) {
-    echo $faker->name() . "\n";
-}
+2) Récupérer les données dans l'url : 
+getQueryParams() : renvoie un tableau ou
+getQueryParam($key, $default = null) pour un seul query param.
 
-3) 
-$date = new DateTime('2011-01-01T15:03:01.012345Z');
-$date->format("Y-m-d(H:M)");
+Pour les données dans le body :
+getParsedBody()
 
+
+3) $app->response->setStatus(codeNumber) </br>
+$app->response->headers->set(headerName, value);
