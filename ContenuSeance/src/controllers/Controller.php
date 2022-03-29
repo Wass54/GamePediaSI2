@@ -71,19 +71,10 @@ class Controller
 'description' => $game->description, 'original_release_date' => $game->original_release_date));
         array_push($arrayPrincipal, $arrayGame);
 
-        $arrayLinks = array('links' => array('comments' => $game->comments->href, 'characters' => $game->characters->href));
+        $arrayLinks = array('links' => array('comments' => "/api/games/".$game->id."/comments" , 'characters' => "/api/games/".$game->id."/characters"));
         array_push($arrayPrincipal, $arrayLinks);
         
         $rs = $rs->withJson($arrayPrincipal);
         return $rs;
     }
-
-
-/*
-    public function gameByPage($rq, $rs, $args){
-        $rs = $rs->withHeader('Content-Type', 'application/json');
-        
-    }
-*/
-
 }
