@@ -2,14 +2,16 @@
 	"require":{
 		"illuminate/database": "8.*",
 		"slim/slim": "3.*",
-		"php": ">=8.0"
+		"php": ">=8.0",
+		"ext-json": "*"
 	},
 
 	"autoload":{
 		"psr-4": {
 			"game\\" : "src",
 			"game\\models\\" : "src/models",
-			"game\\requetes\\" : "src/requetes"
+			"game\\requetes\\" : "src/requetes",
+			"game\\controller\\" : "src/controllers"
 		}
 	}
 }
