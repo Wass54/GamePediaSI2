@@ -41,24 +41,49 @@ class Controller
     }
 
 
-    //----------------------------------------------Partie 5----------------------------------------------
-    public function listCommentsForGame($rq, $rs, $args){
+    public function gameByPage($rq, $rs, $args){
+        $page = $args['page'];
         $rs = $rs->withHeader('Content-Type', 'application/json');
-        $id = $args['id'];
-        $game = Game::find($id);
-        $commentaires = $game->comments;
+        
+        
+        //partie games
+        $game = Game::skip(200*($page-1))->take(200)->get();
         $array = array();
 
-        foreach ($commentaires as $commentaire){
-            array_push($array, array("id" => $commentaire->id, "title" => $commentaire->title, "content" => $commentaire->content,
-                "createdAt" => $commentaire->createdAt, "postedBy" => $commentaire->postedBy));
+        foreach($game as $g){
+                array_push($array, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck,
+                'description' => $g->description));
         }
 
-        $ret = array();
-        $ret['comments'] = $array;
-        $rs = $rs->withJson($ret);
+        //partie links
+        // $game = Game::where("id","<",$page*200)::where("id",">",$page*200)::get();
+
+        $href1 = array();
+        array_push($href1,array('href'=>"/api/games?page=".$page-1));
+        
+        $href2 = array();
+        array_push($href2,array('href'=>"/api/games?page=".$page+1));
+        
+        $links = array();
+        if($page==1){
+            array_push($links,array('next'=>$href2));
+        }else{
+            $longueur = Game::count();
+            if(($longueur/200)==$page){
+                array_push($links,array('prev'=>$href1));
+            }else{
+                array_push($links,array('prev'=>$href1));
+                array_push($links,array('next'=>$href2));
+            }
+        }
+
+        $array2 = array();
+        $array2['games'] = $array;
+        $array2['links'] = $links;
+        $rs = $rs->withJson($array2);
         return $rs;
     }
+
 
     //----------------------------------------------Partie 6----------------------------------------------
     public function gameByIdDetailled($rq, $rs, $args){
