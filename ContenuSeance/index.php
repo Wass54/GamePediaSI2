@@ -17,6 +17,7 @@ $app->get("/api/games/{id}", Controller::class.":gameById")->setName("gameById")
 
 // $app->get("/api/games/{page}", Controller::class.":gameByPage")->setName("gameByPage");
 $app->get("/api/games", Controller::class.":allGames")->setName("allGames");
+$app->get("/api/games/{id}/comments[/]", Controller::class.":listCommentsForGame")->setName("comments");
 
 $app->run();
 

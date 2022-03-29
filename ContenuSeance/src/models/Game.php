@@ -36,4 +36,8 @@ class Game extends Model{
     public function hasFirstAppearanceOf(){
         return $this->hasMany(Character::class,'first_appeared_in_game_id');
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'game');
+    }
 }

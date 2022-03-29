@@ -2,6 +2,7 @@
 
 namespace game\controller;
 
+use game\models\Comment;
 use game\models\Game;
 
 class Controller
@@ -36,6 +37,24 @@ class Controller
         $rs = $rs->withJson($array2);
         return $rs;
 
+    }
+
+    public function listCommentsForGame($rq, $rs, $args){
+        $rs = $rs->withHeader('Content-Type', 'application/json');
+        $id = $args['id'];
+        $game = Game::find($id);
+        $commentaires = $game->comments;
+        $array = array();
+
+        foreach ($commentaires as $commentaire){
+            array_push($array, array("id" => $commentaire->id, "title" => $commentaire->title, "content" => $commentaire->content,
+                "createdAt" => $commentaire->createdAt, "postedBy" => $commentaire->postedBy));
+        }
+
+        $ret = array();
+        $ret['comments'] = $array;
+        $rs = $rs->withJson($ret);
+        return $rs;
     }
 
 
