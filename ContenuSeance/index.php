@@ -22,7 +22,7 @@ DB::enableQueryLog();
 $rm = new RequestManager();
 
 
-/**
+/*
 $rm->listGameStartingWith("Mario");
 $rm->listGameStartingWith("Sonic");
 $rm->listGameStartingWith("World");
