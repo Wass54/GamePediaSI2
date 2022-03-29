@@ -26,12 +26,11 @@ class Controller
         $game = Game::all();
         $array2 = array();
         $compteur = 0;
-        
+
         foreach($game as $g){
             if($compteur <= 200){
-                $array = array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck,
-                'description' => $g->description);
-                $array2 = array_merge($array, $array2);
+                array_push($array2, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck,
+                'description' => $g->description));
                 $compteur++;
             }
         }
