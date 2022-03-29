@@ -7,6 +7,7 @@ use game\models\Game;
 class Controller
 {
 
+    //----------------------------------------------Partie 1----------------------------------------------
     public function gameById($rq, $rs, $args){
         $id = $args['id'];
         $rs = $rs->withHeader('Content-Type', 'application/json');
@@ -20,7 +21,7 @@ class Controller
         return $rs;
     }
 
-
+    //----------------------------------------------Partie 2----------------------------------------------
     public function allGames($rq, $rs, $args){
         $rs = $rs->withHeader('Content-Type', 'application/json');
         $game = Game::take(200)->get();
