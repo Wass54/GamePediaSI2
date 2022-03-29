@@ -4,8 +4,6 @@ require_once 'vendor\autoload.php';
 use game\controller\Controller;
 use Illuminate\Database\Capsule\Manager as DB;
 
-
-
 $container = new Slim\Container(['settings' => ['displayErrorDetails' => true]]);
 $app = new Slim\App($container);
 
@@ -18,6 +16,7 @@ $db->bootEloquent();
 $app->get("/api/games/{id}", Controller::class.":gameById")->setName("gameById");
 
 // $app->get("/api/games/{page}", Controller::class.":gameByPage")->setName("gameByPage");
+$app->get("/api/games", Controller::class.":allGames")->setName("allGames");
 
 $app->run();
 
