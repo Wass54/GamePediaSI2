@@ -23,19 +23,17 @@ class Controller
 
     public function allGames($rq, $rs, $args){
         $rs = $rs->withHeader('Content-Type', 'application/json');
-        $game = Game::all();
-        $array2 = array();
-        $compteur = 0;
+        $game = Game::take(200)->get();
+        $array = array();
 
         foreach($game as $g){
-            if($compteur <= 200){
-                array_push($array2, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck,
+                array_push($array, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck,
                 'description' => $g->description));
-                $compteur++;
-            }
         }
-        $json = json_encode($array2);
-        $rs = $rs->withJson($json);
+        
+        $array2 = array();
+        $array2['games'] = $array;
+        $rs = $rs->withJson($array2);
         return $rs;
 
     }
