@@ -60,7 +60,6 @@ class Controller
         return $rs;
     }
 
-<<<<<<< HEAD
     //----------------------------------------------Partie 6----------------------------------------------
     public function gameByIdDetailled($rq, $rs, $args){
         $id = $args['id'];
@@ -87,6 +86,4 @@ class Controller
     }
 */
 
-=======
->>>>>>> 7428a107ecd9de3f1945d8f741e74bbced9e253a
 }
