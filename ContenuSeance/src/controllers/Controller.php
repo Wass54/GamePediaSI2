@@ -40,7 +40,7 @@ class Controller
 
     }
 
-    //----------------------------------------------Partie 4----------------------------------------------
+    //----------------------------------------------Partie 3----------------------------------------------
     public function gameByPage($rq, $rs, $args){
         $page = $args['page'];
         $rs = $rs->withHeader('Content-Type', 'application/json');
