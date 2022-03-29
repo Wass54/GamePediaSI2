@@ -17,6 +17,7 @@ $db->bootEloquent();
 
 $app->get("/api/games/{id}", Controller::class.":gameById")->setName("gameById");
 
+// $app->get("/api/games/{page}", Controller::class.":gameByPage")->setName("gameByPage");
 
 $app->run();
 

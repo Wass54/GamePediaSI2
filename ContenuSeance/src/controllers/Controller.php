@@ -20,4 +20,8 @@ class Controller
         $rs = $rs->withJson($json);
         return $rs;
     }
+    /*
+    public function gameByPage($rq, $rs, $args){
+        $id = $args[]
+    }*/
 }
