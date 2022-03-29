@@ -60,12 +60,4 @@ class Controller
         return $rs;
     }
 
-
-/*
-    public function gameByPage($rq, $rs, $args){
-        $rs = $rs->withHeader('Content-Type', 'application/json');
-        
-    }
-*/
-
 }
