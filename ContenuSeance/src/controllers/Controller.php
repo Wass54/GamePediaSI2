@@ -8,7 +8,6 @@ class Controller
 {
 
     public function gameById($rq, $rs, $args){
-        $id = $rq->getQueryParam("id");
         $rs = $rs->withHeader('Content-Type', 'application/json');
 
         $game = Game::where('id',$id);
@@ -19,4 +18,13 @@ class Controller
         $rs = $rs->withJson($json);
         return $rs;
     }
+
+
+    public function gameByGames($rs, $rs, $args){
+        $id = $rq->getQueryParam("id");
+        $rs = $rs->withHeader('Content-Type', 'application/json');
+        $rs 
+
+    }
+
 }

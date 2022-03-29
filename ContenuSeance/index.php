@@ -16,7 +16,7 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 $app->get("/api/games/{id}[/]", Controller::class.":gameById")->setName("gameById");
-
+$app->get("/api/games[/]", Controller::class.":gameByGame")->setName("gameByGame");
 
 $app->run();
 
