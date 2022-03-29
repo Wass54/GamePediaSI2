@@ -60,6 +60,24 @@ class Controller
         return $rs;
     }
 
+    //----------------------------------------------Partie 6----------------------------------------------
+    public function gameByIdDetailled($rq, $rs, $args){
+        $id = $args['id'];
+        $rs = $rs->withHeader('Content-Type', 'application/json');
+
+        $game = Game::find($id);
+        $arrayPrincipal = array();
+        $arrayGame = array('game' => array('id' => $id, 'name' => $game->name, 'alias' => $game->alias, 'deck' => $game->deck,
+'description' => $game->description, 'original_release_date' => $game->original_release_date));
+        array_push($arrayPrincipal, $arrayGame);
+
+        $arrayLinks = array('links' => array('comments' => $game->comments->href, 'characters' => $game->characters->href));
+        array_push($arrayPrincipal, $arrayLinks);
+        
+        $rs = $rs->withJson($arrayPrincipal);
+        return $rs;
+    }
+
 
 /*
     public function gameByPage($rq, $rs, $args){
