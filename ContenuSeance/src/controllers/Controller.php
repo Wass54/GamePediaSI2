@@ -11,7 +11,7 @@ class Controller
         $id = $args['id'];
         $rs = $rs->withHeader('Content-Type', 'application/json');
 
-       $game = Game::find($id);
+        $game = Game::find($id);
 
         $array = array('id' => $id, 'name' => $game->name, 'alias' => $game->alias, 'deck' => $game->deck,
             'description' => $game->description, 'original_release_date' => $game->original_release_date);
@@ -22,11 +22,16 @@ class Controller
     }
 
 
-    public function gameByGames($rs, $rs, $args){
-        $id = $rq->getQueryParam("id");
+    public function allGames($rq, $rs, $args){
         $rs = $rs->withHeader('Content-Type', 'application/json');
-        $rs 
+        $game = Game::all();
 
+        $array = array('id' => $id, 'name' => $game->name, 'alias' => $game->alias, 'deck' => $game->deck,
+            'description' => $game->description);
+
+        $json = json_encode($array);
+        $rs = $rs->withJson($jso);
+        return $rs;
     }
 
 }
