@@ -40,6 +40,8 @@ class Controller
 
     }
 
+
+    //----------------------------------------------Partie 5----------------------------------------------
     public function listCommentsForGame($rq, $rs, $args){
         $rs = $rs->withHeader('Content-Type', 'application/json');
         $id = $args['id'];
