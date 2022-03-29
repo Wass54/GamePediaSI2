@@ -80,50 +80,6 @@ class Controller
     }
 
 
-    public function gameByPage($rq, $rs, $args){
-        $page = $args['page'];
-        $rs = $rs->withHeader('Content-Type', 'application/json');
-        
-        
-        //partie games
-        $game = Game::skip(200*($page-1))->take(200)->get();
-        $array = array();
-
-        foreach($game as $g){
-                array_push($array, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck,
-                'description' => $g->description));
-        }
-
-        //partie links
-        // $game = Game::where("id","<",$page*200)::where("id",">",$page*200)::get();
-
-        $href1 = array();
-        array_push($href1,array('href'=>"/api/games?page=".$page-1));
-        
-        $href2 = array();
-        array_push($href2,array('href'=>"/api/games?page=".$page+1));
-        
-        $links = array();
-        if($page==1){
-            array_push($links,array('next'=>$href2));
-        }else{
-            $longueur = Game::count();
-            if(($longueur/200)==$page){
-                array_push($links,array('prev'=>$href1));
-            }else{
-                array_push($links,array('prev'=>$href1));
-                array_push($links,array('next'=>$href2));
-            }
-        }
-
-        $array2 = array();
-        $array2['games'] = $array;
-        $array2['links'] = $links;
-        $rs = $rs->withJson($array2);
-        return $rs;
-    }
-
-
     //----------------------------------------------Partie 6----------------------------------------------
     public function gameByIdDetailled($rq, $rs, $args){
         $id = $args['id'];
@@ -141,5 +97,5 @@ class Controller
         $rs = $rs->withJson($arrayPrincipal);
         return $rs;
     }
-    
+
 }
