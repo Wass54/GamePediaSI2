@@ -1,6 +1,11 @@
 <?php
 namespace game\requetes;
 
+$config = ['settings' => [
+    'addContentLengthHeader' => false,
+]];
+$app = new \Slim\App($config);
+
 use DateTime;
 use game\models\Character;
 use game\models\Comment;
@@ -289,7 +294,6 @@ class RequestManager
     }
 
 
-
     public function addUser() {
         
         $fakerFr = Faker\Factory::create('fr_FR');
@@ -300,16 +304,12 @@ class RequestManager
 
             $u = new User();
 
-
             $firstName;
             $lastName;
             $address;
             $email;
             $phone;
             $date;
-
-
-
             switch (rand(0,10)){
                 case 1:
                     echo "français :" . "<br>";
@@ -372,10 +372,6 @@ class RequestManager
             echo "______________________ " . $i . "______________________ <br>";
         }
     }
-
-
-
-
 
     public function addComment() {
                 
