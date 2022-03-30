@@ -50,24 +50,25 @@ class Controller
     }
 
     //----------------------------------------------Partie 3----------------------------------------------
-    public function gameByPage($rq, $rs, $args){
-        $page = $args['page'];
+    public function gamesByPage($rq, $rs, $args){
+        $page = $rq->getQueryParam('page');
+        if(!isset($page)) $page = 1;
         $rs = $rs->withHeader('Content-Type', 'application/json');
 
-        $game = Game::skip(200*($page-1))->take(200)->get();
+        $games = Game::skip(200*($page-1))->take(200)->get();
         $array = array();
 
-        foreach($game as $g){
+        foreach($games as $g){
                 array_push($array, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck,
                 'description' => $g->description));
         }
         $href1 = array();
 
 
-        array_push($href1,array('href'=>$this->container->router->pathFor('games',['id'=>$game->id])."?page=".$page-1));
+        array_push($href1,array('href'=> $this->container->router->pathFor('games') . ("?page=" . ($page - 1))));
 
         $href2 = array();
-        array_push($href2,array('href'=>$this->container->router->pathFor('games',['id'=>$game->id])."?page=".$page+1));
+        array_push($href2,array('href'=> $this->container->router->pathFor('games') . ("?page=" . ($page + 1))));
 
         $links = array();
         if($page==1){
@@ -97,7 +98,7 @@ class Controller
         $array = array();
         foreach($game as $g){
                 $nombreID = $g->id;
-                array_push($array, array('game' =>    array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck, 'description' => $g->description)));
+                array_push($array, array('game' => array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck, 'description' => $g->description)));
                 array_push($array, array('links' => array('self' => array('href' => $this->container->router->pathFor('games').$nombreID))));
         }
 
@@ -105,7 +106,6 @@ class Controller
         $array2['games'] = $array;
         $rs = $rs->withJson($array2);
         return $rs;
-
     }
 
 
