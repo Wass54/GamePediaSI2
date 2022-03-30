@@ -99,7 +99,7 @@ class Controller
                 array_push($array, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck, 'description' => $g->description));
                 array_push($array, array('href'=> "/api/games/".$nombreID));
         }
-        
+
         $array2 = array();
         $array2['games'] = $array;
         $rs = $rs->withJson($array2);
@@ -141,17 +141,17 @@ class Controller
         //array_push($arrayPrincipal, $arrayGame);
 
         $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id]),
-                                            'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id])));
+                                             'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id])));
         //array_push($arrayPrincipal, $arrayLinks);
-        
+
         //--------------------------------------------------------------------------------------------//
 
-        $plateforme = Platform::find($game->platform->platform_id);
+        $plateforme = Platform::find($game->platform->platform_id); 
         $arrayPlateforme = array();
 
         foreach($plateforme as $p){
-            array_push($arrayPlateforme, array('idPlateform' => $p->id, 'namePlatform' => $p->name, 
-                                               'aliasPlatform' => $p->alias, 'abbreviationPlatform' => $p->abbreviation, 
+            array_push($arrayPlateforme, array('idPlateform' => $p->id, 'namePlatform' => $p->name,
+                                               'aliasPlatform' => $p->alias, 'abbreviationPlatform' => $p->abbreviation,
                                                'descriptionPlatform' => $p->description));
         }
 
