@@ -87,6 +87,27 @@ class Controller
         return $rs;
     }
 
+    //----------------------------------------------Partie 4----------------------------------------------
+
+    public function collectionLinks($rq, $rs, $args){
+        $rs = $rs->withHeader('Content-Type', 'application/json');
+        $game = Game::take(200)->get();
+        $array = array();
+        foreach($game as $g){
+                $nombreID = $g->id;
+                array_push($array, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck, 'description' => $g->description));
+                array_push($array, array('href'=> "/api/games/".$nombreID));
+        }
+        
+        $array2 = array();
+        $array2['games'] = $array;
+        $rs = $rs->withJson($array2);
+        return $rs;
+
+    }
+
+
+
 
     //----------------------------------------------Partie 5----------------------------------------------
     public function listCommentsForGame($rq, $rs, $args){
@@ -115,15 +136,34 @@ class Controller
         $game = Game::find($id);
         $arrayPrincipal = array();
         $arrayGame = array('game' => array('id' => $id, 'name' => $game->name, 'alias' => $game->alias, 'deck' => $game->deck,
-'description' => $game->description, 'original_release_date' => $game->original_release_date));
-        array_push($arrayPrincipal, $arrayGame);
+                           'description' => $game->description, 'original_release_date' => $game->original_release_date));
+        //array_push($arrayPrincipal, $arrayGame);
 
         $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id])),
                                             'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id]));
+        //array_push($arrayPrincipal, $arrayLinks);
+        
+        //--------------------------------------------------------------------------------------------//
+
+        $plateforme = Platforme::find($game->platform->platform_id); 
+        $arrayPlateforme = array();
+
+        foreach($plateforme as $p){
+            array_push($arrayPlateforme, array('idPlateform' => $p->id, 'namePlatform' => $p->name, 
+                                               'aliasPlatform' => $p->alias, 'abbreviationPlatform' => $p->abbreviation, 
+                                               'descriptionPlatform' => $p->description));
+        }
+
+        $gamePlateformeTab = array();
+        $gamePlateformeTab['gamePlateforme'] = $arrayPlateforme;
+        array_push($arrayGame, $gamePlateformeTab);
+        array_push($arrayPrincipal, $arrayGame);
         array_push($arrayPrincipal, $arrayLinks);
 
         $rs = $rs->withJson($arrayPrincipal);
         return $rs;
+
+
     }
 
     //----------------------------------------------Partie 7----------------------------------------------

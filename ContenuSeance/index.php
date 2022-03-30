@@ -13,6 +13,9 @@ $db->addConnection(parse_ini_file(__DIR__.'/src/conf/conf.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
 
+
+
+
 //Partie 1
 //$app->get("/api/games/{id}", Controller::class.":gameById")->setName("gameById");
 
