@@ -136,15 +136,34 @@ class Controller
         $game = Game::find($id);
         $arrayPrincipal = array();
         $arrayGame = array('game' => array('id' => $id, 'name' => $game->name, 'alias' => $game->alias, 'deck' => $game->deck,
-'description' => $game->description, 'original_release_date' => $game->original_release_date));
-        array_push($arrayPrincipal, $arrayGame);
+                           'description' => $game->description, 'original_release_date' => $game->original_release_date));
+        //array_push($arrayPrincipal, $arrayGame);
 
-        $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id])),
-                                            'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id]));
+        $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id]), 
+                                             'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id])));
+        //array_push($arrayPrincipal, $arrayLinks);
+        
+        //--------------------------------------------------------------------------------------------//
+
+        $plateforme = Platform::find($game->platform->platform_id); 
+        $arrayPlateforme = array();
+
+        foreach($plateforme as $p){
+            array_push($arrayPlateforme, array('idPlateform' => $p->id, 'namePlatform' => $p->name, 
+                                               'aliasPlatform' => $p->alias, 'abbreviationPlatform' => $p->abbreviation, 
+                                               'descriptionPlatform' => $p->description));
+        }
+
+        $gamePlateformeTab = array();
+        $gamePlateformeTab['gamePlateforme'] = $arrayPlateforme;
+        array_push($arrayGame, $gamePlateformeTab);
+        array_push($arrayPrincipal, $arrayGame);
         array_push($arrayPrincipal, $arrayLinks);
 
         $rs = $rs->withJson($arrayPrincipal);
         return $rs;
+
+
     }
 
     //----------------------------------------------Partie 7----------------------------------------------
@@ -181,5 +200,30 @@ class Controller
         $arrayPrincipal = array();
         $arrayPrincipal['characters'] = $arrayCharacters;
         return $rs->withJson($arrayPrincipal);
+    }
+
+    //----------------------------------------------Partie 8----------------------------------------------
+    public function postComment($rq, $rs, $args){
+        $rs = $rs->withHeader('Content-Type', 'application/json');
+
+        $formulaire = $rq->getParsedBody();
+
+        $comment = new Comment();
+        // Todo changer id
+        $comment->id = 9;
+        $comment->title = $formulaire['title'];
+        $comment->game = $args['id'];
+        $comment->created_at = date('d-m-y h:i:s');
+        $comment->updated_at = date('d-m-y h:i:s');
+        $comment->postedBy = $formulaire['postedBy'];
+        $comment->content = $formulaire['content'];
+        $comment->save();
+
+        $arrayComment = array("id" => $comment->id, "title" => $comment->title, "content" => $comment->content,
+            "createdAt" => $comment->created_at, "postedBy" => $comment->postedBy);
+
+        //$rs->withLocation('');
+        $rs = $rs->withStatus(201);
+        return $rs->withJson($arrayComment);
     }
 }
