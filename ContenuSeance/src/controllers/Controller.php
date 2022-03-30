@@ -5,6 +5,7 @@ namespace game\controller;
 use game\models\Character;
 use game\models\Comment;
 use game\models\Game;
+use game\models\Platform;
 use Slim\Container;
 
 class Controller
@@ -139,13 +140,13 @@ class Controller
                            'description' => $game->description, 'original_release_date' => $game->original_release_date));
         //array_push($arrayPrincipal, $arrayGame);
 
-        $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id])),
-                                            'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id]));
+        $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id]),
+                                            'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id])));
         //array_push($arrayPrincipal, $arrayLinks);
         
         //--------------------------------------------------------------------------------------------//
 
-        $plateforme = Platforme::find($game->platform->platform_id); 
+        $plateforme = Platform::find($game->platform->platform_id);
         $arrayPlateforme = array();
 
         foreach($plateforme as $p){
@@ -209,8 +210,6 @@ class Controller
         $formulaire = $rq->getParsedBody();
 
         $comment = new Comment();
-        // Todo changer id
-        $comment->id = 9;
         $comment->title = $formulaire['title'];
         $comment->game = $args['id'];
         $comment->created_at = date('d-m-y h:i:s');
