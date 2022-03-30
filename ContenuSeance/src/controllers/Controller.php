@@ -161,4 +161,29 @@ class Controller
         $arrayPrincipal['characters'] = $arrayCharacters;
         return $rs->withJson($arrayPrincipal);
     }
+
+    //----------------------------------------------Partie 8----------------------------------------------
+    public function postComment($rq, $rs, $args){
+        $rs = $rs->withHeader('Content-Type', 'application/json');
+
+        $formulaire = $rq->getParsedBody();
+
+        $comment = new Comment();
+        // Todo changer id
+        $comment->id = 9;
+        $comment->title = $formulaire['title'];
+        $comment->game = $args['id'];
+        $comment->created_at = date('d-m-y h:i:s');
+        $comment->updated_at = date('d-m-y h:i:s');
+        $comment->postedBy = $formulaire['postedBy'];
+        $comment->content = $formulaire['content'];
+        $comment->save();
+
+        $arrayComment = array("id" => $comment->id, "title" => $comment->title, "content" => $comment->content,
+            "createdAt" => $comment->created_at, "postedBy" => $comment->postedBy);
+
+        //$rs->withLocation('');
+        $rs = $rs->withStatus(201);
+        return $rs->withJson($arrayComment);
+    }
 }
