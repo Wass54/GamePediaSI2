@@ -139,13 +139,13 @@ class Controller
                            'description' => $game->description, 'original_release_date' => $game->original_release_date));
         //array_push($arrayPrincipal, $arrayGame);
 
-        $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id])),
-                                            'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id]));
+        $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id]), 
+                                             'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id])));
         //array_push($arrayPrincipal, $arrayLinks);
         
         //--------------------------------------------------------------------------------------------//
 
-        $plateforme = Platforme::find($game->platform->platform_id); 
+        $plateforme = Platform::find($game->platform->platform_id); 
         $arrayPlateforme = array();
 
         foreach($plateforme as $p){
