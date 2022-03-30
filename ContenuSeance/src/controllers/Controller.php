@@ -78,7 +78,6 @@ class Controller
         return $rs;
     }
 
-
     //----------------------------------------------Partie 5----------------------------------------------
     public function listCommentsForGame($rq, $rs, $args){
         $rs = $rs->withHeader('Content-Type', 'application/json');
@@ -106,14 +105,32 @@ class Controller
         $game = Game::find($id);
         $arrayPrincipal = array();
         $arrayGame = array('game' => array('id' => $id, 'name' => $game->name, 'alias' => $game->alias, 'deck' => $game->deck,
-'description' => $game->description, 'original_release_date' => $game->original_release_date));
-        array_push($arrayPrincipal, $arrayGame);
+                           'description' => $game->description, 'original_release_date' => $game->original_release_date));
+        //array_push($arrayPrincipal, $arrayGame);
 
         $arrayLinks = array('links' => array('comments' => "/api/games/".$game->id."/comments" , 'characters' => "/api/games/".$game->id."/characters"));
-        array_push($arrayPrincipal, $arrayLinks);
+        //array_push($arrayPrincipal, $arrayLinks);
         
+        //--------------------------------------------------------------------------------------------//
+
+        $plateforme = Platforme::find($game->platform->platform_id); 
+        $arrayPlateforme = array();
+
+        foreach($plateforme as $p){
+            array_push($arrayPlateforme, array('idPlateform' => $p->id, 'namePlatform' => $p->name, 'aliasPlatform' => $p->alias, 'abbreviationPlatform' => $p->abbreviation));
+        }
+
+        $gamePlateformeTab = array();
+        $gamePlateformeTab['gamePlateforme'] = $arrayPlateforme;
+        array_push($arrayGame, $gamePlateformeTab);
+        array_push($arrayPrincipal, $arrayGame);
+        array_push($arrayPrincipal, $arrayLinks);
+
+
         $rs = $rs->withJson($arrayPrincipal);
         return $rs;
+
+
     }
 
 }
