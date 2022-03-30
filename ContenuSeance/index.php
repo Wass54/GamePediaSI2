@@ -21,6 +21,7 @@ $db->bootEloquent();
 
 // $app->get("/api/games/{page}", Controller::class.":gameByPage")->setName("gameByPage");
 $app->get("/api/games[/]", Controller::class.":allGames")->setName("games");
+$app->get("/api/comments/{id}[/]", Controller::class.":comment")->setName("comment");
 $app->get("/api/games/{id}/comments[/]", Controller::class.":listCommentsForGame")->setName("comments");
 $app->post('/api/games/{id}/comments[/]',Controller::class.":postComment")->setName("postComment");
 $app->get("/api/games/{id}[/]", Controller::class.":gameByIdDetailled")->setName("detailled");

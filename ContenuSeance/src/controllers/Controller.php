@@ -205,6 +205,13 @@ class Controller
     }
 
     //----------------------------------------------Partie 8----------------------------------------------
+    public function comment($rq,$rs,$args){
+        $rs = $rs->withHeader('Content-Type', 'application/json');
+        $comment = Comment::find($args['id']);
+        $arrayComment = array('id' => $comment->id, 'title' => $comment->title, 'content' => $comment->content, 'postedBy' => $comment->postedBy);
+        return $rs->withJson($arrayComment);
+    }
+
     public function postComment($rq, $rs, $args){
         $rs = $rs->withHeader('Content-Type', 'application/json');
 
@@ -225,7 +232,7 @@ class Controller
         $arrayComment = array("id" => $comment->id, "title" => $comment->title, "content" => $comment->content,
             "createdAt" => $comment->created_at, "postedBy" => $comment->postedBy);
 
-        //$rs->withLocation('');
+        $rs = $rs->withHeader('Location', $this->container->router->pathFor('comment', ['id' => $comment->id]));
         $rs = $rs->withStatus(201);
         return $rs->withJson($arrayComment);
     }
