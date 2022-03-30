@@ -18,7 +18,7 @@ class Game extends Model{
 
     public function platform(){
 
-        return $this->belongsToMany(Game2platform::class, 'game2platform', 'game_id', 'platform_id');
+        return $this->belongsToMany(Platform::class, 'Game2platform', 'game_id', 'platform_id');
 
     }
 

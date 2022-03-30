@@ -146,7 +146,7 @@ class Controller
 
         //--------------------------------------------------------------------------------------------//
 
-        $plateforme = Platform::find($game->platform->platform_id);
+        $plateforme = $game->platform;
         $arrayPlateforme = array();
 
         foreach($plateforme as $p){
