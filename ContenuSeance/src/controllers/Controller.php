@@ -149,7 +149,9 @@ class Controller
         $arrayPlateforme = array();
 
         foreach($plateforme as $p){
-            array_push($arrayPlateforme, array('idPlateform' => $p->id, 'namePlatform' => $p->name, 'aliasPlatform' => $p->alias, 'abbreviationPlatform' => $p->abbreviation));
+            array_push($arrayPlateforme, array('idPlateform' => $p->id, 'namePlatform' => $p->name, 
+                                               'aliasPlatform' => $p->alias, 'abbreviationPlatform' => $p->abbreviation, 
+                                               'descriptionPlatform' => $p->description));
         }
 
         $gamePlateformeTab = array();
