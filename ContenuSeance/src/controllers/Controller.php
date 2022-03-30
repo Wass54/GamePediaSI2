@@ -6,6 +6,7 @@ use game\models\Character;
 use game\models\Comment;
 use game\models\Game;
 use game\models\Platform;
+use game\models\User;
 use Slim\Container;
 
 class Controller
@@ -214,8 +215,11 @@ class Controller
         $comment->game = $args['id'];
         $comment->created_at = date('d-m-y h:i:s');
         $comment->updated_at = date('d-m-y h:i:s');
-        $comment->postedBy = $formulaire['postedBy'];
         $comment->content = $formulaire['content'];
+
+        $email = $formulaire['email'];
+        $user = User::firstwhere('email', $email);
+        $comment->postedBy = $user->id;
         $comment->save();
 
         $arrayComment = array("id" => $comment->id, "title" => $comment->title, "content" => $comment->content,
