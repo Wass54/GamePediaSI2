@@ -39,7 +39,7 @@ class Controller
                 array_push($array, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck,
                 'description' => $g->description));
         }
-        
+
         $array2 = array();
         $array2['games'] = $array;
         $rs = $rs->withJson($array2);
@@ -47,7 +47,7 @@ class Controller
 
     }
 
-    //----------------------------------------------Partie 4----------------------------------------------
+    //----------------------------------------------Partie 3----------------------------------------------
     public function gameByPage($rq, $rs, $args){
         $page = $args['page'];
         $rs = $rs->withHeader('Content-Type', 'application/json');
@@ -63,10 +63,10 @@ class Controller
 
 
         array_push($href1,array('href'=>$this->container->router->pathFor('games',['id'=>$game->id])."?page=".$page-1));
-        
+
         $href2 = array();
         array_push($href2,array('href'=>$this->container->router->pathFor('games',['id'=>$game->id])."?page=".$page+1));
-        
+
         $links = array();
         if($page==1){
             array_push($links,array('next'=>$href2));
@@ -121,7 +121,7 @@ class Controller
         $arrayLinks = array('links' => array('comments' => $this->container->router->pathFor('comments',['id'=>$game->id])),
                                             'characters' => $this->container->router->pathFor('charactersForGame',['id'=>$game->id]));
         array_push($arrayPrincipal, $arrayLinks);
-        
+
         $rs = $rs->withJson($arrayPrincipal);
         return $rs;
     }

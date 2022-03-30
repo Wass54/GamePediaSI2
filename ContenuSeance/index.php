@@ -4,8 +4,6 @@ require_once 'vendor\autoload.php';
 use game\controller\Controller;
 use Illuminate\Database\Capsule\Manager as DB;
 
-
-
 $container = new Slim\Container(['settings' => ['displayErrorDetails' => true]]);
 $app = new Slim\App($container);
 
