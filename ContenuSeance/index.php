@@ -22,6 +22,8 @@ $app->get("/api/games/{id}/comments[/]", Controller::class.":listCommentsForGame
 $app->get("/api/games/{id}[/]", Controller::class.":gameByIdDetailled")->setName("detailled");
 $app->get('/api/characters/{id}[/]', Controller::class.":characterById")->setName("character");
 $app->get("/api/games/{id}/characters[/]", Controller::class.":listCharactersForGame")->setName("charactersForGame");
+$app->get("/api/links[/]", Controller::class.":collectionLinks")->setName("collectionLinks");
+
 
 $app->run();
 

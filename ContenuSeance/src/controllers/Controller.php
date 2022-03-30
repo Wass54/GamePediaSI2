@@ -95,11 +95,11 @@ class Controller
         $array = array();
         foreach($game as $g){
                 $nombreID = $g->id;
-                array_push($array, array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck, 'description' => $g->description));
-                array_push($array, array('href'=> "/api/games/".$nombreID));
+                array_push($array, array('game' =>    array('id' => $g->id, 'name' => $g->name, 'alias' => $g->alias, 'deck' => $g->deck, 'description' => $g->description)));
+                array_push($array, array('links' => array('self' => array('href' => $this->container->router->pathFor('games').$nombreID))));
         }
         
-        $array2 = array();
+        $array2 = array("game");
         $array2['games'] = $array;
         $rs = $rs->withJson($array2);
         return $rs;
